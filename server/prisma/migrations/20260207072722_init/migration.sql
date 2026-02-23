@@ -1,0 +1,18 @@
+-- CreateTable
+CREATE TABLE `ContactInfo` (
+    `id` INTEGER NOT NULL DEFAULT 1,
+    `phone` VARCHAR(191) NOT NULL DEFAULT '',
+    `phone2` VARCHAR(191) NOT NULL DEFAULT '',
+    `email` VARCHAR(191) NOT NULL DEFAULT '',
+    `addressUz` VARCHAR(191) NOT NULL DEFAULT '',
+    `addressRu` VARCHAR(191) NOT NULL DEFAULT '',
+    `instagram` VARCHAR(191) NOT NULL DEFAULT '',
+    `telegram` VARCHAR(191) NOT NULL DEFAULT '',
+    `youtube` VARCHAR(191) NOT NULL DEFAULT '',
+    `facebook` VARCHAR(191) NOT NULL DEFAULT '',
+    `mapUrl` VARCHAR(191) NOT NULL DEFAULT '',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

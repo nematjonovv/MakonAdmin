@@ -1,0 +1,37 @@
+import cloudinary from "../config/cloudinary.config";
+
+type CloudinaryUploadResult = {
+  public_id: string;
+  secure_url: string;
+  width?: number;
+  height?: number;
+  format?: string;
+};
+
+export async function uploadToCloudinary(buffer: Buffer) {
+  const upload = await new Promise<CloudinaryUploadResult>(
+    (resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "makon", resource_type: "auto" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result as CloudinaryUploadResult);
+        },
+      );
+      stream.end(buffer);
+    },
+  );
+
+  const transformedUrl = cloudinary.url(upload.public_id, {
+    transformation: [
+      { quality: "auto", fetch_format: "auto" },
+      { width: 500, height: 500, crop: "fill" },
+    ],
+  });
+
+  return {
+    public_id: upload.public_id,
+    secure_url: upload.secure_url,
+    transformed_url: transformedUrl,
+  };
+}

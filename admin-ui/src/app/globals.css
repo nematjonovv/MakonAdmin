@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --bg: rgba(111, 130, 111, 1);
+  --surface: rgba(94, 110, 94, 1);
+  --card: #0e2025;
+  --border-strong: rgba(255, 255, 255, 0.5);
+  --border-muted: rgba(255, 255, 255, 0.1);
+  --header-border: rgba(255, 255, 255, 0.5);
+  --text: #fff;
+  --secondarytext: rgba(255, 255, 255, 0.656);
+  --button-bg: rgba(227, 83, 54, 1);
+  --header-bg: rgba(6, 14, 16, 0.7);
+  --footer-bg: rgba(94, 110, 94, 1);
+  --badge-bg: rgba(6, 14, 16, 0.7);
+  --badge-border: rgba(255, 255, 255, 0.5);
+  --button-hover: rgba(227, 83, 54);
+  --card-border: oklch(87.2% 0.01 258.338);
+  --process-step-bg: rgba(6, 14, 16, 1);
+  --login-bg: url(/image/login-bg.png);
+}
+
+html.dark {
+  --bg: rgb(6, 14, 16);
+  --surface: rgba(42, 97, 111);
+  --surface-hover: rgba(42, 97, 111, 0.115);
+  --card: #0e2025;
+  --border-strong: rgba(255, 255, 255, 0.5);
+  --border-muted: rgba(255, 255, 255, 0.1);
+  --header-border: rgba(255, 255, 255, 0.1);
+  --text: #fff;
+  --secondarytext: rgba(255, 255, 255, 0.656);
+  --button-bg: rgba(227, 83, 54, 0.9);
+  --header-bg: rgba(6, 14, 16, 0.7);
+  --footer-bg: rgba(14, 32, 37, 1);
+  --badge-bg: rgba(14, 32, 37, 0.7);
+  --badge-border: rgba(255, 255, 255, 0.1);
+  --button-hover: rgba(227, 83, 54);
+  --card-border: oklch(37.3% 0.034 259.733);
+  --process-step-bg: rgba(111, 130, 111, 1);
+  --login-bg: url("/images/login-bg2.png");
+  --login-bg2: url("/images/login-bg-22.png");
+  --project-bg: url("/images/apartmen_day.png");
+}
+
+body {
+  background-color: var(--bg);
+  overflow-x: hidden !important;
+}
+
+.font-clash {
+  font-family: var(--font-clash), system-ui, sans-serif;
+}
+.font-clashGrotesk {
+  font-family: var(--font-clash-grotesk), system-ui, sans-serif;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0 20px 20px 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* .glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+} */
+
+.delete-btn {
+  cursor: pointer !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+}
+
+.delete-btn:hover {
+  background-color: #0a0a0a !important; /* neutral-950 */
+  color: red !important;
+}
+/* globals.css ga qo'sh */
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 999px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}
+
+.ant-select-placeholder {
+  color: var(--secondarytext) !important;
+  border-color: var(--border-muted) !important;
+}
+
+.ant-select-suffix{
+  color: var(--secondarytext) !important;
+}

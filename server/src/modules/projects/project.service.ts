@@ -11,6 +11,13 @@ function assertImage(file: Express.Multer.File) {
     throw new Error("Invalid image type");
   }
 }
+export type ProjectImage = {
+  id: number;
+  projectId: number;
+  image: string;
+  imagePublicId?: string | null;
+  image_alt: unknown;
+};
 class ProjectService {
   async createProject(args: {
     body: ProjectSchemaType;

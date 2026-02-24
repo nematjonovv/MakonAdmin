@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { hearFrom } from "../../generated/prisma";
+import { hearFrom } from "@prisma/client";
 
 export const requestsSchema = z.object({
   name: z.string().min(1, "Ismingizni kiriting"),

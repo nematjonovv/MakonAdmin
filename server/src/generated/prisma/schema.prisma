@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  password String
+  role     String @default("admin")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model Services {
+  id           Int    @id @default(autoincrement())
+  icon         String
+  iconPublicId String @map("icon_public_id")
+  localeData   Json
+
+  @@map("services")
+}
+
+model Projects {
+  id               Int              @id @default(autoincrement())
+  title            String
+  categoryId       Int
+  slug             String           @unique
+  status           String           @default("completed")
+  localizedContent Json
+  facts            Json
+  design           Json
+  coverImage       CoverImage?
+  category         ProjectCategory  @relation(fields: [categoryId], references: [id])
+  gallery          ProjectGallery[]
+
+  @@map("projects")
+}
+
+model ProjectCategory {
+  id       Int        @id @default(autoincrement())
+  title    String     @unique
+  projects Projects[]
+
+  @@map("project_category")
+}
+
+model CoverImage {
+  id                 Int      @id @default(autoincrement())
+  projectId          Int      @unique
+  image_light        String
+  image_dark         String
+  imageLightPublicId String?  @map("image_light_public_id")
+  imageDarkPublicId  String?  @map("image_dark_public_id")
+  image_alt          Json
+  project            Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("cover_image")
+}
+
+model ProjectGallery {
+  id            Int      @id @default(autoincrement())
+  projectId     Int
+  image         String
+  imagePublicId String?  @map("image_public_id")
+  image_alt     Json
+  project       Projects @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_gallery")
+}
+
+model Team {
+  id            Int    @id @default(autoincrement())
+  name          String
+  role          String
+  photo         String
+  photoPublicId String @map("photo_public_id")
+
+  @@map("team")
+}
+
+model Testimonials {
+  id               Int    @id @default(autoincrement())
+  name             String
+  localizedContent Json   @map("localized_content")
+  photoUrl         String @map("photo_url")
+  videoUrl         String @map("video_url")
+  altImage         Json   @map("alt_image")
+  photoPublicId    String @map("photo_public_id")
+  videoPublicId    String @map("video_public_id")
+
+  @@map("testimonials")
+}
+
+model Requests {
+  id        Int      @id @default(autoincrement())
+  name      String
+  number    String
+  about     String
+  heardFrom hearFrom @map("heard_from")
+  createdAt DateTime @default(now())
+
+  @@map("requests")
+}
+
+enum hearFrom {
+  INSTAGRAM
+  TELEGRAM
+  YOUTUBE
+  BANNER
+  OTHER
+  FRIEND
+}
+
+model ContactInfo {
+  id Int @id @default(1)
+
+  // phone
+  phone     String   @default("")
+  phone2    String   @default("")
+  // email
+  email     String   @default("")
+  // address (multilang)
+  addressUz String   @default("")
+  addressRu String   @default("")
+  // social links
+  instagram String   @default("")
+  telegram  String   @default("")
+  youtube   String   @default("")
+  facebook  String   @default("")
+  // map
+  mapUrl    String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

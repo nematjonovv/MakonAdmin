@@ -1,10 +1,11 @@
 import { Response } from "express";
 
 export async function SetAuthCookie(res: Response, token: string) {
+  const isProd = process.env.NODE_ENV === "production";
   res.cookie("access_token", token, {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });

@@ -21,7 +21,12 @@ const allowedOrigins = new Set([
 export const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://makon-design-studio.vercel.app",
+      "https://makon-admin-six.vercel.app"
+    ],
     credentials: true,
   }),
 );

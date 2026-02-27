@@ -1,18 +1,37 @@
 "use client";
 import { login } from "@/api/auth/auth.api";
+import Loader from "@/components/Loader";
+import { useToast } from "@/Providers/MessageProvider";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { error, success } = useToast();
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const res = await login(username, password);
-    
-    if (res.ok) router.push("/dashboard");
+    try {
+      setLoading(true);
+      const res = await login(username, password);
+      
+      if (res.ok) {
+        success("Muvaffaqiyatli!");
+        router.replace("/dashboard");
+        setLoading(false);
+      } else {
+        const data = await res.json();
+        error(data.message);
+      }
+    } catch (err: any) {
+      error(err.message?.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,7 +77,7 @@ function LoginForm() {
             type="submit"
             className="w-full bg-(--surface) hover:bg-(--card) active:scale-98 transition text-white font-semibold py-3 rounded-lg text-sm transition-colors cursor-pointer mt-2"
           >
-            Kirish
+            {loading ? <Loader /> : "Kirish"}
           </button>
         </form>
       </div>

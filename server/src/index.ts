@@ -14,8 +14,8 @@ import { userRouter } from "./modules/users/user.route";
 const allowedOrigins = new Set([
   "http://localhost:3000", // client dev
   "http://localhost:3001", // admin dev
-  "https://example.com",
-  "https://admin.example.com",
+  "https://makon-design-studio.vercel.app",
+  "https://makon-admin-six.vercel.app",
 ]);
 
 export const app = express();

@@ -14,9 +14,9 @@ class AuthController {
           .json({ message: "Name and password are required" });
       }
       const admin = await authService.login(name, password);
+      console.log('JWT_SECRET:', process.env.JWT_SECRET)
 
-      SetAuthCookie(res, admin.token);
-      return res.status(200).json({ admin: admin.admin });
+      return res.status(200).json({ token: admin.token, success: true });
     } catch (error: any) {
 
       if (error.message === "Invalid password") return res.json({ success: false, message: "Nom yoki parol notogri" })
@@ -64,19 +64,6 @@ class AuthController {
       return res
         .status(200)
         .json({ success: true, admin, message: "Successfully logged in" });
-    } catch (error: any) {
-      return return500status({ message: error.message, res });
-    }
-  }
-
-  async logout(req: Request, res: Response) {
-    try {
-      res.clearCookie("access_token", {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-      });
-      return res.status(200).json({ message: "Logged Out" });
     } catch (error: any) {
       return return500status({ message: error.message, res });
     }

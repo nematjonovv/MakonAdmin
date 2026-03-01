@@ -17,6 +17,7 @@ async function createAdmin() {
     create: {
       name: name!,
       password: hashedPassword,
+      role:"admin"
     },
   });
 

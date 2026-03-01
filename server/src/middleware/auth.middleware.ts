@@ -8,11 +8,8 @@ export function authMiddleware(
   next: NextFunction,
 ) {
   try {
-    const token = req.cookies?.access_token;
-
-    if (!token) {
-      return res.status(401).json({ success: false, message: "Unauthorized" });
-    }
+    const authHeader = req.headers["authorization"]
+    const token = authHeader && authHeader.split(" ")[1]
 
     if (!token) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
@@ -27,7 +24,6 @@ export function authMiddleware(
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as AuthPayload;
     req.admin = decoded;
 
-    console.log(decoded);
 
     next();
   } catch (error: any) {

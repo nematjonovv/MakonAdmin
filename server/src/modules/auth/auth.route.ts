@@ -251,43 +251,4 @@ router.post("/register", authMiddleware, hasRole("admin"), authController.regist
  */
 router.get("/me", authMiddleware, authController.me);
 
-/**
- * @openapi
- * /auth/logout:
- *   post:
- *     tags:
- *       - Auth
- *     summary: Logout current admin
- *     description: |
- *       Authenticated adminni logout qiladi.
- *       Server JWT cookie ni clear qiladi.
- *       Refresh token ishlatilmaydi (token 7 kunlik expiration bilan).
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       204:
- *         description: Successfully logged out (cookie cleared)
- *       401:
- *         description: Unauthorized (missing or invalid token)
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Login requires a token (Bearer)"
- *       500:
- *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Internal server error"
- */
-
-router.post("/logout", authController.logout);
 export default router;

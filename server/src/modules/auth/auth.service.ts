@@ -7,7 +7,6 @@ class AuthService {
     const admin = await prisma.admin.findUnique({
       where: { name },
     });
-
     if (!admin) {
       throw new Error("User not found");
     }

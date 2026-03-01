@@ -1,10 +1,8 @@
 import { BASE_URL } from "@/constants/base_url";
-import { redirect } from "next/navigation";
 import { logout } from "./auth/auth.api";
 
 if (!BASE_URL) {
   console.warn("API_URL is not set");
-  console.log(BASE_URL);
 }
 
 type ApiError = {
@@ -32,9 +30,16 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
     }
   }
 
+  // localStorage faqat browserda ishlaydi
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+  }
+
   const res = await fetch(url, {
     ...options,
-    credentials: "include",
     headers,
     body: hasRawBody
       ? options.rawBody
@@ -44,12 +49,11 @@ export async function apiFetch(path: string, options: ApiFetchOptions = {}) {
   });
 
   if (res.status === 401) {
-    if (typeof window === "undefined") {
-      await logout();
-    } else {
-      // window.location.href = "/login";
-      await logout()
+    localStorage.removeItem("access_token");
+    if (typeof window !== "undefined") {
       window.location.href = "/login";
+    } else {
+      await logout();
     }
   }
 

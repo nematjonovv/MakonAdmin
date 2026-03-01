@@ -28,11 +28,19 @@ export default function DashboardLayout({
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+      router.replace("/login");
+    }
+  }, []);
+
   if (loading) return <Loader />;
   if (!admin) return null;
   return (
     <div className="h-screen w-screen text-white flex font-clash">
-        <Sidebar admin={admin}/>
+      <Sidebar admin={admin} />
       <div className="w-full px-10 h-screen overflow-y-auto custom-scroll">
         {children}
       </div>

@@ -17,17 +17,16 @@ function LoginForm() {
     try {
       setLoading(true);
       const res = await login(username, password);
+      console.log(res);
       
-      if (res.ok) {
-        success("Muvaffaqiyatli!");
-        router.replace("/dashboard");
+      if (res.success) {
+        success("Muvaffaqiyatli kirildi")
+        localStorage.setItem("access_token", res.token);
+        router.push("/dashboard");
         setLoading(false);
-      } else {
-        const data = await res.json();
-        error(data.message);
       }
     } catch (err: any) {
-      error(err.message?.message);
+      error(err.message);
       console.log(err);
     } finally {
       setLoading(false);

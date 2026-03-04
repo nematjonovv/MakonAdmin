@@ -42,7 +42,6 @@ function Services() {
           Xizmat qo'shish
         </button>
       </div>
-      {/* <SuccessMessage /> */}
       <div className="flex w-full justify-between gap-5 flex-wrap mt-5">
         {services && services.length > 0 ? (
           services.map((service) => (

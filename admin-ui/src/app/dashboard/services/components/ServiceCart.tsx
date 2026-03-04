@@ -17,7 +17,7 @@ function ServiceCart({
 }) {
   return (
     <div
-      className={`group relative h-70 border border-(--card-border) backdrop-blur-md bg-(--card) rounded-4xl pt-6.5 px-9 pb-10 flex items-center overflow-hidden w-1/2 lg:flex-1 lg:min-w-[calc(50%-10px)]`}
+      className={`group relative h-70 border border-(--card-border) backdrop-blur-md bg-(--card) rounded-4xl pt-6.5 px-9 pb-10 flex items-center overflow-hidden lg:w-[calc(50%-10px)]`}
     >
       <div className="absolute hidden group-hover:flex left-0 top-0 backdrop-blur-sm w-full h-full rounded-4xl bg-black/50 z-15   justify-end pr-7 pt-5 items-start">
         <div className="flex items-center gap-3">

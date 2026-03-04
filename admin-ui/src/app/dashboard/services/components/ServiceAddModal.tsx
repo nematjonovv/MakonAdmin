@@ -75,7 +75,9 @@ function ServiceAddModal({
             type="text"
             placeholder="Sarlavha (UZ)"
             className="mb-3 w-full rounded-lg bg-gray-800 px-3 py-2.5 text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-blue-500 transition"
-            onChange={(e) => setForm((p) => ({ ...p, uzTitle: e.target.value }))}
+            onChange={(e) =>
+              setForm((p) => ({ ...p, uzTitle: e.target.value }))
+            }
           />
           <textarea
             placeholder="Tavsif (UZ)"
@@ -95,7 +97,9 @@ function ServiceAddModal({
             type="text"
             placeholder="Заголовок (RU)"
             className="mb-3 w-full rounded-lg bg-gray-800 px-3 py-2.5 text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-blue-500 transition"
-            onChange={(e) => setForm((p) => ({ ...p, ruTitle: e.target.value }))}
+            onChange={(e) =>
+              setForm((p) => ({ ...p, ruTitle: e.target.value }))
+            }
           />
           <textarea
             placeholder="Описание (RU)"
@@ -135,8 +139,12 @@ function ServiceAddModal({
                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
                   />
                 </svg>
-                <span className="text-gray-400 text-sm">Fayl yuklash uchun bosing</span>
-                <span className="text-gray-600 text-xs mt-0.5">SVG, PNG, JPG</span>
+                <span className="text-gray-400 text-sm">
+                  Fayl yuklash uchun bosing
+                </span>
+                <span className="text-gray-600 text-xs mt-0.5">
+                  SVG, PNG, JPG
+                </span>
               </>
             )}
           </label>
@@ -144,19 +152,19 @@ function ServiceAddModal({
           {/* Buttons */}
           <div className="flex gap-2 text-white">
             <button
-              type="submit"
-              disabled={loading}
-              className="flex-1 rounded-lg bg-blue-600 py-2.5 hover:bg-blue-700 cursor-pointer transition disabled:opacity-50"
-            >
-              {loading ? "Yuklanmoqda..." : "Qo'shish"}
-            </button>
-            <button
               type="button"
               onClick={onClose}
               disabled={loading}
               className="flex-1 rounded-lg bg-gray-700 py-2.5 cursor-pointer hover:bg-red-500/20 border-2 border-transparent hover:border-red-500 transition disabled:opacity-50"
             >
               Bekor qilish
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 rounded-lg bg-blue-600 py-2.5 hover:bg-blue-700 cursor-pointer transition disabled:opacity-50"
+            >
+              {loading ? "Yuklanmoqda..." : "Qo'shish"}
             </button>
           </div>
         </form>

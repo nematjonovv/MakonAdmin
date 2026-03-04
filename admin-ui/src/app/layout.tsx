@@ -18,6 +18,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${poppins.className} ${clash.variable} ${clashGrotesk.variable}`}
+      suppressHydrationWarning
     >
       <ThemeProviderCustom>
         <MessageProvider>

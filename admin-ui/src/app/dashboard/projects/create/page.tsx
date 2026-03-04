@@ -4,8 +4,11 @@ import { createProject } from "@/api/projects.api";
 import CategoryDropdown from "@/components/CategoryDropdown";
 import { useToast } from "@/Providers/MessageProvider";
 import { Select } from "antd";
+import { PlusCircle, PlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
+import CategoryModal from "../components/CategoryModal";
+import Loader from "@/components/Loader";
 
 // ─── Reusable UI ────────────────────────────────────────────────────────────
 
@@ -466,14 +469,15 @@ export default function ProjectCreatePage() {
   };
 
   const { error, success } = useToast();
+  const [isOpen, setIsOpen] = useState(false);
 
-  if (loading) return <div>Yuklanmoqda</div>;
 
   return (
     <div
       className="min-h-screen h-screen overflow-x-auto custom-scroll font-clash"
       style={{ background: "var(--bg)" }}
     >
+      {loading && <Loader />}
       {/* Header */}
       <div
         className="sticky top-0 z-10 backdrop-blur px-8 py-4 flex items-center justify-between"
@@ -556,9 +560,14 @@ export default function ProjectCreatePage() {
                   ]}
                 />
               </div>
-              <div>
-                <Label>Kategoriya</Label>
-                <CategoryDropdown onChange={(id) => setCategoryId(id)} />
+              <div className="flex items-end gap-3 col-span-2 md:col-span-1">
+                <div className="w-full">
+                  <Label>Kategoriya</Label>
+                  <CategoryDropdown onChange={(id) => setCategoryId(id)} />
+                </div>
+                <button type="button" onClick={() => setIsOpen(true)} title="Yangi kategoriya qo'shish">
+                  <PlusCircle className="mb-2.5 text-stone-600 cursor-pointer" />
+                </button>
               </div>
             </div>
           </div>
@@ -933,6 +942,9 @@ export default function ProjectCreatePage() {
           </div>
         </div>
       </form>
+
+      <CategoryModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import multer from "multer";
 
 const fifeMb = 5 * 1024 * 1024;
-
+const tenMb = 10 * 1024 * 1024;
 const imageTypes = ["image/jpeg", "image/png"];
 const videoTypes = ["video/mp4", "video/avi", "video/quicktime"]; // MOV = video/quicktime
 export const uploadImage = multer({
@@ -18,7 +18,7 @@ export const uploadImage = multer({
 
 export const uploadTestimonialFiles = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: fifeMb },
+  limits: { fileSize: tenMb },
   fileFilter(req, file, cb) {
     if (file.fieldname === "avatar") {
       if (!imageTypes.includes(file.mimetype)) {

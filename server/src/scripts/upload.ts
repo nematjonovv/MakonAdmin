@@ -25,7 +25,8 @@ export async function uploadToCloudinary(buffer: Buffer) {
   const transformedUrl = cloudinary.url(upload.public_id, {
     transformation: [
       { quality: "auto", fetch_format: "auto" },
-      { width: 500, height: 500, crop: "fill" },
+      { width: 1200, height: 500, crop: "limit" },
+      
     ],
   });
 

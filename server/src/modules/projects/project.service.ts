@@ -66,8 +66,8 @@ class ProjectService {
         // Cover Image
         coverImage: {
           create: {
-            image_light: lightUpload.secure_url,
-            image_dark: darkUpload.secure_url,
+            image_light: lightUpload.transformed_url,
+            image_dark: darkUpload.transformed_url,
             imageLightPublicId: lightUpload.public_id,
             imageDarkPublicId: darkUpload.public_id,
             image_alt: coverAlt.alt,
@@ -76,7 +76,7 @@ class ProjectService {
         // Gallery Images
         gallery: {
           create: galleryUploads.map((img, idx) => ({
-            image: img.secure_url,
+            image: img.transformed_url,
             imagePublicId: img.public_id,
             image_alt: galleryAlt?.[idx]?.alt || "",
           })),

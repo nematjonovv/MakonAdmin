@@ -14,7 +14,7 @@ class TeamService {
       data: {
         name,
         role,
-        photo: photoUploadResult.secure_url,
+        photo: photoUploadResult.transformed_url,
         photoPublicId: photoUploadResult.public_id,
       },
     });

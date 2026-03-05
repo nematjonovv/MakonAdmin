@@ -9,10 +9,9 @@ class ServicerService {
       const localeData = data.localeData;
       const buffer = file.buffer;
       const upload = await uploadToCloudinary(buffer);
-
       const newService = await prisma.services.create({
         data: {
-          icon: upload.secure_url,
+          icon: upload.transformed_url,
           iconPublicId: upload.public_id,
           localeData,
         },
@@ -64,7 +63,7 @@ class ServicerService {
 
       if (file) {
         const upload = await uploadToCloudinary(file.buffer);
-        dataToUpdate.icon = upload.secure_url;
+        dataToUpdate.icon = upload.transformed_url;
         dataToUpdate.iconPublicId = upload.public_id;
 
         await cloudinary.uploader.destroy(existingService.iconPublicId);

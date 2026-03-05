@@ -26,7 +26,7 @@ class TestimonialService {
         localizedContent,
         altImage: alt,
         videoUrl: videoUrl.secure_url,
-        photoUrl: avatarUrl.secure_url,
+        photoUrl: avatarUrl.transformed_url,
         photoPublicId: avatarUrl.public_id,
         videoPublicId: videoUrl.public_id,
       },

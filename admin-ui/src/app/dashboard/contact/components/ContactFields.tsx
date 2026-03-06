@@ -11,19 +11,35 @@ interface ContactFieldsProps {
 }
 
 function ContactFields({ formRef, cancelRef }: ContactFieldsProps) {
-  const [contact, setContact] = useState<ContactData>();
+  const defaultContact: ContactData = {
+    id: 0,
+    phone: "",
+    phone2: "",
+    email: "",
+    addressUz: "",
+    addressRu: "",
+    instagram: "",
+    telegram: "",
+    youtube: "",
+    facebook: "",
+    mapUrl: "",
+    createdAt: "",
+    updatedAt: "",
+  };
+  const [contact, setContact] = useState<ContactData>(defaultContact);
   const [fetching, setFetching] = useState(true);
   const [loading, setLoading] = useState(false);
   const { error, success } = useToast();
   useEffect(() => {
     getContact()
-      .then((res) => setContact(res.data))
+      .then((res) => setContact(res.data ?? defaultContact))
       .catch((err) => console.log(err))
       .finally(() => setFetching(false));
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log("contact state:", contact); // ← undefined chiqsa muammo shu
     setContact((prev) => (prev ? { ...prev, [name]: value } : prev));
   };
 
@@ -45,14 +61,17 @@ function ContactFields({ formRef, cancelRef }: ContactFieldsProps) {
     const { id, createdAt, updatedAt, ...body } = contact;
 
     try {
+      setLoading(true)
       const res = await updateContact(body);
       if (res.success) {
         success(res?.message ?? "Muvaffaqiyatli saqlandi");
       } else {
-        error(res?.message ??  "Saqlashda xatolik");
+        error(res?.message ?? "Saqlashda xatolik");
       }
     } catch (error) {
       console.log(error);
+    }finally {
+      setLoading(false)
     }
   };
 
@@ -69,7 +88,7 @@ function ContactFields({ formRef, cancelRef }: ContactFieldsProps) {
           >
             <label className="text-gray-400 text-sm">Telefon 1</label>
             <input
-              type="text"
+              type="number"
               name="phone"
               value={contact?.phone ?? ""}
               onChange={handleChange}
@@ -85,7 +104,7 @@ function ContactFields({ formRef, cancelRef }: ContactFieldsProps) {
           >
             <label className="text-gray-400 text-sm">Telefon 2</label>
             <input
-              type="text"
+              type="number"
               name="phone2"
               value={contact?.phone2 ?? ""}
               onChange={handleChange}

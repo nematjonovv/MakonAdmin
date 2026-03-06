@@ -9,7 +9,6 @@ export interface ContactData {
   telegram: string;
   youtube: string;
   facebook: string;
-  website: string;
   mapUrl: string;
   createdAt: string;
   updatedAt: string;

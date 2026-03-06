@@ -21,7 +21,6 @@ export const updateContactSchema = z.object({
   telegram: z.string("Invalid telegram url").optional(),
   youtube: z.string("Invalid youtube url").optional(),
   facebook: z.string("Invalid facebook url").optional(),
-  website: z.string("Invalid website url").optional(),
 
   mapUrl: z.string("Invalid map url").optional(),
 });

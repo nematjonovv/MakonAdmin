@@ -1,6 +1,7 @@
+import { Service, ServicesResponse } from "@/types/services.type";
 import { apiFetch } from "../apiFetch";
 
-export async function createService(data: FormData) {
+export async function createService(data: FormData): Promise<ServicesResponse> {
   const res = await apiFetch("/api/services", {
     method: "POST",
     rawBody: data,

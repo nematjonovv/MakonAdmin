@@ -6,10 +6,14 @@ export type Service = {
     uz: {
       title: string;
       desc: string;
+      features: string[];
+      steps: string[];
     };
     ru: {
       title: string;
       desc: string;
+      features: string[];
+      steps: string[];
     };
   };
 };

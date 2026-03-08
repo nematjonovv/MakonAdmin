@@ -17,8 +17,6 @@ function LoginForm() {
     try {
       setLoading(true);
       const res = await login(username, password);
-      console.log(res);
-      
       if (res.success) {
         success("Muvaffaqiyatli kirildi")
         localStorage.setItem("access_token", res.token);

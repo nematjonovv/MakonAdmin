@@ -6,6 +6,7 @@ import ServiceAddModal from "./components/ServiceAddModal";
 import { deleteService, getServices } from "@/api/services/service.api";
 import { Service } from "@/types/services.type";
 import { useToast } from "@/Providers/MessageProvider";
+import Link from "next/link";
 
 function Services() {
   const [open, setOpen] = useState(false);
@@ -35,14 +36,15 @@ function Services() {
     <div>
       <div className="flex justify-between items-center border-b border-neutral-700 pb-2 sticky top-0 bg-(--bg) pt-5">
         <PageTitle title="Xizmatlar" />
-        <button
-          onClick={() => setOpen(true)}
+        <Link
+          href={"/dashboard/services/create"}
           className="bg-(--surface) cursor-pointer py-1 px-2 rounded-md"
         >
           Xizmat qo'shish
-        </button>
+        </Link>
       </div>
-      <div className="flex w-full justify-between gap-5 flex-wrap mt-5">
+      <div className="flex w-full
+       justify-between gap-5 flex-wrap mt-5">
         {services && services.length > 0 ? (
           services.map((service) => (
             <ServiceCart

@@ -68,4 +68,10 @@ app.use("/api", teamRouter);
 app.use("/api", testimonialRouter);
 app.use("/api", contactRouter);
 app.use("/api", userRouter);
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is running smoothly",
+  });
+});
 export default app;

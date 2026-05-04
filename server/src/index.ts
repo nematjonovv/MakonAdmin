@@ -17,6 +17,7 @@ const allowedOrigins = new Set([
   "http://localhost:3001", // admin dev
   "https://makon-design-studio.vercel.app",
   "https://makon-admin-six.vercel.app",
+  "https://makondesign.uz",
 ]);
 
 export const app = express();
@@ -26,7 +27,8 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "https://makon-design-studio.vercel.app",
-      "https://makon-admin-six.vercel.app"
+      "https://makon-admin-six.vercel.app",
+      "https://www.makondesign.uz/"
     ],
     credentials: true,
   }),

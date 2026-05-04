@@ -45,7 +45,7 @@ class AuthService {
 
     const newAdmin = await prisma.admin.create({
       data: {
-        name,
+        name,e
         password: hashedPassword,
         role
       },

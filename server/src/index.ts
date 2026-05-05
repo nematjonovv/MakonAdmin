@@ -18,6 +18,7 @@ const allowedOrigins = new Set([
   "https://makon-design-studio.vercel.app",
   "https://makon-admin-six.vercel.app",
   "https://makondesign.uz",
+  "https://www.makondesign.uz"
 ]);
 
 export const app = express();

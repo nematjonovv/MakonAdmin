@@ -29,7 +29,9 @@ app.use(
       "http://localhost:3001",
       "https://makon-design-studio.vercel.app",
       "https://makon-admin-six.vercel.app",
-      "https://www.makondesign.uz/"
+      "https://www.makondesign.uz/",
+      "https://www.makondesign.uz"
+
     ],
     credentials: true,
   }),

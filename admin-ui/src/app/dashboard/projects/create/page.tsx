@@ -305,7 +305,8 @@ export default function ProjectCreatePage() {
   // Facts
   const [year, setYear] = useState("");
   const [areaM2, setAreaM2] = useState("");
-  const [budget, setBudget] = useState("");
+  const [budgetDesign, setBudgetDesign] = useState("");
+  const [budgetBuild, setBudgetBuild] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
@@ -389,14 +390,12 @@ export default function ProjectCreatePage() {
 
     const formData = new FormData();
 
-    // ── Oddiy fieldlar ─────────────────────────
     formData.append("title", title);
     formData.append("status", status);
     if (categoryId) {
       formData.append("categoryId", String(categoryId));
     }
 
-    // ── JSON fieldlar — stringify qilamiz ──────
     const localizedContent = {
       uz: {
         excerpt: uzExcerpt,
@@ -424,7 +423,8 @@ export default function ProjectCreatePage() {
     const facts = {
       year: Number(year),
       areaM2: Number(areaM2),
-      budget: Number(budget),
+      budgetDesign: Number(budgetDesign),
+      budgetBuild: Number(budgetBuild),
       location: { city, country },
     };
     formData.append("facts", JSON.stringify(facts));
@@ -437,15 +437,13 @@ export default function ProjectCreatePage() {
     };
     formData.append("design", JSON.stringify(design));
 
-    // ── Cover image alt — stringify ────────────
     const coverImageAlt = { alt: { uz: coverAltUz, ru: coverAltRu } };
     formData.append("coverAlt", JSON.stringify(coverImageAlt));
 
-    // ── Fayllar — to'g'ridan-to'g'ri ──────────
     if (coverLightFile) formData.append("coverLight", coverLightFile);
     if (coverDarkFile) formData.append("coverDark", coverDarkFile);
 
-    // ── Gallery ────────────────────────────────
+
     gallery.forEach((item, index) => {
       formData.append("gallery", item.file);
     });
@@ -601,11 +599,20 @@ export default function ProjectCreatePage() {
                 />
               </div>
               <div>
-                <Label>Byudjet ($)</Label>
+                <Label>Dizayn xarajati ($)</Label>
                 <Input
                   type="number"
-                  value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
+                  value={budgetDesign}
+                  onChange={(e) => setBudgetDesign(e.target.value)}
+                  placeholder="150000"
+                />
+              </div>
+              <div>
+                <Label>Qurilish xarajati ($)</Label>
+                <Input
+                  type="number"
+                  value={budgetBuild}
+                  onChange={(e) => setBudgetBuild(e.target.value)}
                   placeholder="150000"
                 />
               </div>

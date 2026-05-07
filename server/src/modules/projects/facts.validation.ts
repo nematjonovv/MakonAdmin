@@ -24,7 +24,11 @@ export const projectFactsSchema = z.object({
     .min(1, { error: "Area must be greater than 0" })
     .max(100000, { error: "Area is unrealistically large" }),
   location: factLocationSchema,
-  budget: z.coerce
+  budgetDesign: z.coerce
+    .number({ error: "Budget must be a number" })
+    .min(0, { error: "Budget must be non-negative" })
+    .optional(),
+  budgetBuild: z.coerce
     .number({ error: "Budget must be a number" })
     .min(0, { error: "Budget must be non-negative" })
     .optional(),

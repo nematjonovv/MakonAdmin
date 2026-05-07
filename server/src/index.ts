@@ -31,7 +31,6 @@ app.use(
       "https://makon-admin-six.vercel.app",
       "https://www.makondesign.uz/",
       "https://www.makondesign.uz"
-
     ],
     credentials: true,
   }),
